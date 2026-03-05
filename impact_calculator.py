@@ -1,9 +1,3 @@
-from questionnaire import run_questionnaire #temp pipeline until integrated on main
-
-def main():
-    answers = run_questionnaire()
-    print(calculate_impact(answers))
-
 #Sets scores for questionnaire answers
 SCORES = {
 "transport": {"walk": 5, "bike": 5, "bus": 15, "car": 30},
@@ -60,7 +54,4 @@ def calculate_impact(answers):
         impact["climate_impact"] = "low"
 
     return impact
-
-if __name__ == "__main__":
-    main()
 
