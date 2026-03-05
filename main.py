@@ -1,12 +1,14 @@
-from dotenv import load_dotenv
-load_dotenv()
+from questionnaire import run_questionnaire
+from impact_calculator import calculate_impact
+from advisor import generate_advice
 
-from openai import OpenAI
-client = OpenAI()
+def main():
+    answers = run_questionnaire()
+    impact = calculate_impact(answers)
+    advice = generate_advice(answers, impact)
 
-response = client.responses.create(
-    model="gpt-5.2",
-    input="test sentence"
-)
+    print(impact)
+    print(advice)
 
-print(response.output_text)
+if __name__ == "__main__":
+    main()
