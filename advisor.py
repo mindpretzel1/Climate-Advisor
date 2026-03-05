@@ -4,16 +4,27 @@ load_dotenv()
 from openai import OpenAI
 client = OpenAI()
 
-def generate_advice(answers, impact):
+def generate_advice(answers, impact, profile):
     prompt = f"""
-    User lifestyle profile:
+    You are a climate advisor helping a user reduce their carbon footprint.
+    User self reported profile (if response is not useful, ignore it):
+    {profile}
+
+    User lifestyle data:
     {answers}
 
-    Climate impact analysis:
-    {impact}
+    Impact analysis:
+    Total score: {impact["total_score"]}/{impact["max_score"]}
+    Highest impact categories: {impact["highest_categories"]}
 
-    Provide 3 realitic ways the user could reduce their climate impact.
-    Focus especially on the highest imapct categories.PermissionError
+    Provide exactly 3 suggestions to reduce impact.
+
+    Rules:
+    - Focus primarily on the highest impact categories.
+    - Each suggestion must be 2 sentences or fewer.
+    - Number the suggestions 1-3.
+    - Do not repeat the introduction.
+    - Do not add extra commentary.
     """
     response = client.responses.create(
         model="gpt-5.2",

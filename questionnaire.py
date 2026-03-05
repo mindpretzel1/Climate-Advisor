@@ -1,4 +1,4 @@
-def run_questionnaire():
+def run_mcq():
     answers = {}
 
     transport_choice = input("How do you get to campus usually?\n"
@@ -82,6 +82,10 @@ def run_questionnaire():
     
     return answers
  
-
-print(run_questionnaire())
+def run_frq():
+    profile = input(
+        "\n(Recommended) Briefly describe your lifestyle "
+        "(student status, commuting habits, budget, etc):\n"
+    )
+    return profile
 

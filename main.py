@@ -1,11 +1,12 @@
-from questionnaire import run_questionnaire
+from questionnaire import run_frq, run_mcq
 from impact_calculator import calculate_impact
 from advisor import generate_advice
 
 def main():
-    answers = run_questionnaire()
+    answers = run_mcq()
+    profile = run_frq()
     impact = calculate_impact(answers)
-    advice = generate_advice(answers, impact)
+    advice = generate_advice(answers, impact, profile)
 
     print(impact)
     print(advice)
