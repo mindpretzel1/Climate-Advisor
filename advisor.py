@@ -28,9 +28,10 @@ def generate_advice(answers, impact, profile):
     Rules:
     - Focus primarily on the highest impact categories.
     - Suggestions must address different behaviors when possible.
+    - At least one suggestion should address a category other than the highest when possible.
     - Avoid recommending actions the user already does.
-    - Each suggestion must be 1–2 sentences.
-    - Number the suggestions 1–3.
+    - Each suggestion must be 1-2 sentences.
+    - Number the suggestions 1-3.
     - Do not include introductions or explanations.
     - Do not repeat the prompt or add extra commentary.
     """
@@ -39,4 +40,4 @@ def generate_advice(answers, impact, profile):
         input=prompt
     )
 
-    print(response.output_text)
+    return response.output_text
