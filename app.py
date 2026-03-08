@@ -5,9 +5,12 @@ from impact_calculator import calculate_impact
 from advisor import generate_advice
 from display import generate_intro, create_chart
 
-st.title("Climate Impact Advisor")
-st.image("assets/Climate change-amico.svg", width=220)
-st.caption("Estimate your climate footprint and get personalized reduction advice.")
+
+st.title("Personal Climate Impact Advisor")
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("assets/climate change-amico.svg")
+    st.caption("Estimate your climate footprint and get personalized reduction advice.")
 
 answers = {}
 
