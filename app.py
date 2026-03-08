@@ -1,10 +1,12 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 from questionnaire import QUESTIONS
 from impact_calculator import calculate_impact
 from advisor import generate_advice
-from display import generate_intro
+from display import generate_intro, create_chart
 
 st.title("Climate Impact Advisor")
+st.caption("Estimate your climate footprint and get personalized reduction advice.")
 
 answers = {}
 
@@ -20,14 +22,13 @@ for question_id in QUESTIONS:
 
     selected_label = st.radio(prompt, labels, key=question_id)
 
-    st.write("You selected:", selected_label)
     for choice in options:
         value, label = options[choice]
         if label == selected_label:
             answers[question_id] = value
 
 profile = st.text_area(
-    "Describe your lifestyle", 
+    "(Recommended) Describe your lifestyle", 
     placeholder="student, status, commuting habits, diet, etc"
 )
 
@@ -36,6 +37,7 @@ if st.button("Analyze impact"):
     advice = generate_advice(answers, impact, profile)
     intro = generate_intro(impact["climate_impact"])
 
+    st.divider()
     st.header("Results")
 
     st.metric(
@@ -59,9 +61,16 @@ if st.button("Analyze impact"):
 
     for category in percentage_breakdown:
         value = percentage_breakdown[category]
-        st.write(f"{category}: {value}%")
+        st.write(f"**{category}**: {value}%")
 
-    st.bar_chart(percentage_breakdown)
+    st.divider()
+
+    fig = create_chart(percentage_breakdown)
+
+    st.pyplot(fig)
+    st.caption("Percent contribution of each category to your total impact score.")
+
+    st.divider()
     st.write(intro)
 
     st.subheader("Recommendations")
