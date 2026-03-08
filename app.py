@@ -38,7 +38,8 @@ profile = st.text_area(
 
 if st.button("Analyze impact"):
     impact = calculate_impact(answers)
-    advice = generate_advice(answers, impact, profile)
+    with st.spinner("Generating personalized recommendations..."):
+        advice = generate_advice(answers, impact, profile)
     intro = generate_intro(impact["climate_impact"])
 
     st.divider()
