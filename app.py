@@ -2,6 +2,7 @@ import streamlit as st
 from questionnaire import QUESTIONS
 from impact_calculator import calculate_impact
 from advisor import generate_advice
+from display import generate_intro
 
 st.title("Climate Impact Advisor")
 
@@ -25,16 +26,16 @@ for question_id in QUESTIONS:
         if label == selected_label:
             answers[question_id] = value
 
-    answers[question_id] = value
-
 profile = st.text_area(
     "Describe your lifestyle", 
     placeholder="student, status, commuting habits, diet, etc"
 )
 
 if st.button("Analyze impact"):
+    st.write("DEBUG answers:", answers)
     impact = calculate_impact(answers)
     advice = generate_advice(answers, impact, profile)
+    intro = generate_intro(impact["climate_impact"])
 
-    st.write(impact)
+    st.write(intro)
     st.write(advice)
