@@ -35,9 +35,17 @@ def generate_advice(answers, impact, profile):
     - Do not include introductions or explanations.
     - Do not repeat the prompt or add extra commentary.
     """
-    response = client.responses.create(
-        model="gpt-5.2",
-        input=prompt
-    )
+    try:
+        response = client.responses.create(
+            model="gpt-5.2",
+            input=prompt
+        )
+        advice = response.output_text
+    except Exception:
+        advice = (
+        "AI recommendations are temporarily unavailable. "
+        "Based on your results above, consider focusing on your highest-impact areas "
+        "such as transportation emissions, diet choice, or clothing waste to reduce your footprint."
+        )
 
-    return response.output_text
+    return advice
