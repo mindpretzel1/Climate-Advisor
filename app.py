@@ -32,7 +32,6 @@ profile = st.text_area(
 )
 
 if st.button("Analyze impact"):
-    st.write("DEBUG answers:", answers)
     impact = calculate_impact(answers)
     advice = generate_advice(answers, impact, profile)
     intro = generate_intro(impact["climate_impact"])
@@ -41,16 +40,28 @@ if st.button("Analyze impact"):
 
     st.metric(
         "Climate Impact Score",
-        f"{impact['total_score']} / {impact['max_score']}"
+        f"{impact['percent_score']}%"
     )
     st.write(f"Impact Level: {impact['climate_impact']}")
 
-    st.subheader("Score Breakdown")
-
+    percentage_breakdown = {}
     for category in impact["score_breakdown"]:
         value = impact["score_breakdown"][category]
-        st.write(f"{category}: {value}")
 
+        if impact["total_score"] > 0:
+            percent = (value / impact["max_score"]) * 100
+        else:
+            percent = 0
+        
+        percentage_breakdown[category.capitalize()] = round(percent, 1)
+
+    st.subheader("Score Breakdown")
+
+    for category in percentage_breakdown:
+        value = percentage_breakdown[category]
+        st.write(f"{category}: {value}%")
+
+    st.bar_chart(percentage_breakdown)
     st.write(intro)
 
     st.subheader("Recommendations")

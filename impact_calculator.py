@@ -40,9 +40,12 @@ def calculate_impact(answers):
 
         elif val == highest_choice:
             highest_categories.append(category)
+    
+    percent_score = round((total_score / MAX_SCORE) * 100)
 
     impact["total_score"] = total_score
     impact["max_score"] = MAX_SCORE
+    impact["percent_score"] = percent_score
     impact["score_breakdown"] = score_breakdown
     impact["highest_categories"] = highest_categories
 
