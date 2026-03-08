@@ -37,5 +37,21 @@ if st.button("Analyze impact"):
     advice = generate_advice(answers, impact, profile)
     intro = generate_intro(impact["climate_impact"])
 
+    st.header("Results")
+
+    st.metric(
+        "Climate Impact Score",
+        f"{impact['total_score']} / {impact['max_score']}"
+    )
+    st.write(f"Impact Level: {impact['climate_impact']}")
+
+    st.subheader("Score Breakdown")
+
+    for category in impact["score_breakdown"]:
+        value = impact["score_breakdown"][category]
+        st.write(f"{category}: {value}")
+
     st.write(intro)
+
+    st.subheader("Recommendations")
     st.write(advice)
