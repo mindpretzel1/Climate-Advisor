@@ -1,84 +1,69 @@
+QUESTIONS = {
+    "transport":{
+        "prompt": "How do you get to campus usually?",
+        "options": {
+            "1": ("walk", "Walking"),
+            "2": ("bike", "Bike"),
+            "3": ("bus", "Bus"),
+            "4": ("car", "Car")
+        }
+    },
+    "diet": {
+        "prompt": "How would you describe your usual diet?",
+        "options": {
+            "1": ("vegan", "Vegan"),
+            "2": ("vegetarian", "Vegetarian"),
+            "3": ("mixed", "Mixed"),
+            "4": ("meat", "Lots of meat")
+        }
+    },
+    "flights": {
+        "prompt": "How many flights do you take per year?",
+        "options": {
+            "1": ("none", "0 flights"),
+            "2": ("low", "1-2 flights"),
+            "3": ("medium", "3-6 flights"),
+            "4": ("high", "7+ flights")
+        }
+    },
+    "clothing": {
+        "prompt": "How often do you buy new clothing?",
+        "options": {
+            "1": ("rare", "Rarely (only when needed)"),
+            "2": ("occasional", "A few times per year"),
+            "3": ("monthly", "About once per month"),
+            "4": ("frequent", "Multiple times per month")
+        }
+    },
+    "housing": {
+        "prompt": "What type of housing do you live in?",
+        "options": {
+            "1": ("shared", "Small shared housing (dorm/shared apartment)"),
+            "2": ("apartment", "Apartment"),
+            "3": ("house_shared", "House with roommates"),
+            "4": ("large_home", "Large single-family home")
+        }
+    }
+}
+
 def run_mcq():
     answers = {}
 
-    transport_choice = input("How do you get to campus usually?\n"
-          "Enter the number that best descibes your transportation:\n"
-          "1) Walking\n" 
-          "2) Bike\n" 
-          "3) Bus\n" 
-          "4) Car\n" 
-          )
-    if transport_choice == "1":
-        answers["transport"] = "walk"
-    elif transport_choice == "2":
-        answers["transport"] = "bike"
-    elif transport_choice == "3":
-        answers["transport"] = "bus"
-    elif transport_choice == "4":
-        answers["transport"] = "car"
-    
-    diet_choice = input("How would you describe your usual diet?\n"
-          "Enter the number that best describes your diet:\n"
-          "1) Vegan\n" 
-          "2) Vegetarian\n" 
-          "3) Mixed\n" 
-          "4) Lots of meat\n" 
-          )
-    if diet_choice == "1":
-        answers["diet"] = "vegan"
-    elif diet_choice == "2":
-        answers["diet"] = "vegetarian"
-    elif diet_choice == "3":
-        answers["diet"] = "mixed"
-    elif diet_choice == "4":
-        answers["diet"] = "meat"
+    for question_id in QUESTIONS: #transport, diet, clothing, etc
+        question = QUESTIONS[question_id]
+        options = question["options"]
 
-    flight_choice = input("How many flights do you take per year?\n"
-          "1) 0 flights\n" 
-          "2) 1-2 flights\n" 
-          "3) 3-6 flights\n" 
-          "4) 7+ flights\n" 
-          )
-    if flight_choice == "1":
-        answers["flights"] = "none"
-    elif flight_choice == "2":
-        answers["flights"] = "low"
-    elif flight_choice == "3":
-        answers["flights"] = "medium"
-    elif flight_choice == "4":
-        answers["flights"] = "high"
+        print(question["prompt"])
 
-    fashion_choice = input("How often do you buy new clothing?\n"
-          "Enter the number that best describes your habits:\n"                 
-          "1) Rarely (only when needed)\n" 
-          "2) A few times per year\n" 
-          "3) About once per month\n" 
-          "4) Multiple times per month\n" 
-          )
-    if fashion_choice == "1":
-        answers["fashion"] = "rare"
-    elif fashion_choice == "2":
-        answers["fashion"] = "occasional"
-    elif fashion_choice == "3":
-        answers["fashion"] = "monthly"
-    elif fashion_choice == "4":
-        answers["fashion"] = "frequent"
+        for choice in options: #1, 2, 3, etc
+            value, label = options[choice]
 
-    housing_choice = input("What type of housing do you live in?\n"
-        "Enter the number that best describes your housing:\n"
-          "1) Small shared housing (dorm/shared apartment)\n" 
-          "2) Apartment\n" 
-          "3) House with roommates\n" 
-          "4) Large single-family home\n" 
-          )
-    if housing_choice == "1":
-        answers["housing"] = "shared"
-    elif housing_choice == "2":
-        answers["housing"] = "apartment"
-    elif housing_choice == "3":
-        answers["housing"] = "house_shared"
-    elif housing_choice == "4":
-        answers["housing"] = "large_home"
+            print(f"{choice}: {label}")
+
+        answer = input()
+
+        value, label = options[answer]
+        answers[question_id] = value
     
     return answers
  

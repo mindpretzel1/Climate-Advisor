@@ -3,7 +3,7 @@ SCORES = {
 "transport": {"walk": 5, "bike": 5, "bus": 15, "car": 30},
 "diet": {"vegan": 5, "vegetarian": 10, "mixed": 20, "meat": 30},
 "flights": {"none": 0, "low": 10, "medium": 20, "high": 30},
-"fashion": {"rare": 5, "occasional": 10, "monthly": 20, "frequent": 30},
+"clothing": {"rare": 5, "occasional": 10, "monthly": 20, "frequent": 30},
 "housing": {"shared": 5, "apartment": 10, "house_shared": 20, "large_home": 30},
 }
 MAX_SCORE = 0 #Max possible score based on questionnaire
@@ -15,7 +15,7 @@ Example of 'answers' structure:
 {'transport': 'walk', 
 'diet': 'vegetarian', 
 'flights': 'medium', 
-'fashion': 'frequent', 
+'clothing': 'frequent', 
 'housing': 'large_home'}
 '''
 def calculate_impact(answers):
