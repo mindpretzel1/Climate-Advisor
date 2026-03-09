@@ -9,7 +9,7 @@ from display import generate_intro, create_chart
 st.title("Personal Climate Impact Advisor")
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
-    st.image("assets/climate change-amico.svg")
+    st.image("assets/climate_change_amico.svg")
     st.caption("Estimate your climate footprint and get personalized reduction advice.")
 
 answers = {}
