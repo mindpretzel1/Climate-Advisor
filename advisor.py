@@ -1,8 +1,9 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+import streamlit as st
 from openai import OpenAI
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 def generate_advice(answers, impact, profile):
     prompt = f"""
